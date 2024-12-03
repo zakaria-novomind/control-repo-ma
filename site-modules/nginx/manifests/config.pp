@@ -4,14 +4,14 @@
 #
 # @example
 #   include nginx::config
-class nginx::config (
-  String $proxy_pass,
-  String $listen_port,
-  String $server_name,
-) {
+class nginx::config {
   file { '/etc/nginx/sites-available/reverse_proxy':
     ensure  => file,
-    content => template('nginx_proxy/nginx_reverse_proxy.conf.erb'),
+    content => epp('nginx/nginx_reverse_proxy.conf.epp', {
+        'listen_port' => $nginx::listen_port,
+        'server_name' => $nginx::server_name,
+        'proxy_pass'  => $nginx::proxy_pass,
+    }),
     notify  => Service['nginx'],
   }
 

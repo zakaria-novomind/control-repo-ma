@@ -4,7 +4,10 @@
 #
 # @example
 #   include nginx
-class nginx {
+class nginx (
+  String $proxy_pass,
+  String $listen_port = '80',
+String $server_name = '_',) {
   contain nginx::install
   contain nginx::config
   contain nginx::service
