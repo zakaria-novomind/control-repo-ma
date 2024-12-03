@@ -9,5 +9,6 @@ class nginx::service {
     ensure     => running,
     enable     => true,
     hasrestart => true,
+    provider   => 'debian',
   }
 }

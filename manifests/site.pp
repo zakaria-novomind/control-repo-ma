@@ -29,8 +29,8 @@ node default {
   # Example:
   #   class { 'my_class': }
   class { 'nginx':
-    proxy_pass  => 'http://backend.example.com',
+    proxy_pass  => 'http://google.com',
     listen_port => '8080',
-    server_name => 'proxy.example.com',
+    server_name => $trusted['certname'],
   }
 }
