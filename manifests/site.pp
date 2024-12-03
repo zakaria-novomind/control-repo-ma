@@ -28,4 +28,9 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
+  class { 'nginx':
+    proxy_pass  => 'http://backend.example.com',
+    listen_port => '8080',
+    server_name => 'proxy.example.com',
+  }
 }
