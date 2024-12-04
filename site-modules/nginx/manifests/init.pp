@@ -16,7 +16,8 @@ String $server_name = '_',) {
 }
 
 class { 'nginx':
-  proxy_pass  => 'http://google.com',
-  listen_port => '8080',
-  server_name => $trusted['certname'],
+  proxy_pass  => 'http://3.73.125.5:80',
+  listen_port => '80',
+  #server_name => $trusted['certname'],
+  server_name => 'nginx.tf.aws.nmop.de',
 }

@@ -5,7 +5,7 @@
 # @example
 #   include nginx::config
 class nginx::config {
-  file { '/etc/nginx/sites-available/reverse_proxy':
+  file { "/etc/nginx/sites-available/${nginx::server_name}":
     ensure  => file,
     content => epp('nginx/nginx_reverse_proxy.conf.epp', {
         'listen_port' => $nginx::listen_port,
@@ -15,9 +15,9 @@ class nginx::config {
     notify  => Service['nginx'],
   }
 
-  file { '/etc/nginx/sites-enabled/reverse_proxy':
+  file { "/etc/nginx/sites-enabled/${nginx::server_name}":
     ensure => link,
-    target => '/etc/nginx/sites-available/reverse_proxy',
+    target => "/etc/nginx/sites-available/${nginx::server_name}",
     notify => Service['nginx'],
   }
 }
