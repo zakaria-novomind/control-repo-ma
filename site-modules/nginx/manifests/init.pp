@@ -14,3 +14,9 @@ String $server_name = '_',) {
 
   Class['nginx::install'] -> Class['nginx::config'] ~> Class['nginx::service']
 }
+
+class { 'nginx':
+  proxy_pass  => 'http://google.com',
+  listen_port => '8080',
+  server_name => $trusted['certname'],
+}

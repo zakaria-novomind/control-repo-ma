@@ -24,7 +24,7 @@ File { backup => false }
 # Puppet Enterprise console and External Node Classifiers (ENC's).
 #
 # For more on node definitions, see: https://puppet.com/docs/puppet/latest/lang_node_definitions.html
-node default {
+node 'pp.agent.org' {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
@@ -33,4 +33,7 @@ node default {
     listen_port => '8080',
     server_name => $trusted['certname'],
   }
+}
+node 'pp.web.org' {
+  class { 'apache': }
 }
