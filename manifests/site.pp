@@ -28,10 +28,12 @@ node 'pp.agent.org' {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
+
   class { 'nginx':
-    proxy_pass  => 'http://google.com',
-    listen_port => '8080',
-    server_name => $trusted['certname'],
+    proxy_pass  => 'http://3.73.125.5:80',
+    listen_port => '80',
+    #server_name => $trusted['certname'],
+    server_name => 'nginx.tf.aws.nmop.de',
   }
 }
 node 'pp.web.org' {
