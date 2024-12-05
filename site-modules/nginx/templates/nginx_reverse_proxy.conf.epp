@@ -11,16 +11,17 @@ server {
     }
 }
 
+
 server {
-        if ($host =  <%= $server_name %>){
+        if ($host =  nginx.tf.aws.nmop.de){
           return 301 https://$host$request_uri;
         }
         listen       80 default_server;
         listen       [::]:80 default_server;
         listen 443 ssl default_server;
         listen [::]:443 ssl default_server;
-        ssl_certificate '/etc/letsencrypt/live/ <%= $server_name %>/fullchain.pem';
-        ssl_certificate_key "/etc/letsencrypt/live/ <%= $server_name %>/privkey.pem";
+        ssl_certificate '/etc/letsencrypt/live/nginx.tf.aws.nmop.de/fullchain.pem';
+        ssl_certificate_key "/etc/letsencrypt/live/nginx.tf.aws.nmop.de/privkey.pem";
         server_name  _;
     return 404; # managed by Certbot
 
