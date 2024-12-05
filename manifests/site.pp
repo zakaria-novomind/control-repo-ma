@@ -43,7 +43,7 @@ node /agent/ {
     manage_cron          => true,
     cron_hour            => [0,12],
     cron_minute          => '30',
-    cron_before_command  => 'service nginx stop',
+    cron_before_command  => '/bin/systemctl stop nginx.service',
     cron_success_command => '/bin/systemctl reload nginx.service',
     cron_output          => 'suppress',
   }
