@@ -30,7 +30,7 @@ node /agent/ {
   #   class { 'my_class': }
 
   class { 'nginx':
-    proxy_pass  => 'http://3.73.125.5:80',
+    proxy_pass  => 'http://63.177.103.172:80',
     listen_port => '80',
     #server_name => $trusted['certname'],
     server_name => 'nginx.tf.aws.nmop.de',

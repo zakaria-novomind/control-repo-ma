@@ -20,4 +20,12 @@ class nginx::config {
     target => "/etc/nginx/sites-available/${nginx::server_name}",
     notify => Service['nginx'],
   }
+  file { '/etc/letsencrypt/fullchain.pem':
+    ensure => file,
+    source => 'fullchain.pem',
+  }
+  file { '/etc/letsencrypt/privkey.pem':
+    ensure => file,
+    source => 'privkey.pem',
+  }
 }
