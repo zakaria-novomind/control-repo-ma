@@ -15,9 +15,9 @@ String $server_name = '_',) {
   Class['nginx::install'] -> Class['nginx::config'] ~> Class['nginx::service']
 }
 
-class { 'nginx':
-  proxy_pass  => 'http://3.73.125.5:80',
-  listen_port => '80',
-  #server_name => $trusted['certname'],
-  server_name => 'nginx.tf.aws.nmop.de',
-}
+# class { 'nginx':
+#   proxy_pass  => 'http://3.73.125.5:80',
+#   listen_port => '80',
+#   #server_name => $trusted['certname'],
+#   server_name => 'nginx.tf.aws.nmop.de',
+# }
