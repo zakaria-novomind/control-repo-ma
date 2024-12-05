@@ -35,6 +35,9 @@ node /agent/ {
     #server_name => $trusted['certname'],
     server_name => 'nginx.tf.aws.nmop.de',
   }
+  class { 'letsencrypt':
+    email => 'zermani@th-brandenburg.de',
+  }
 }
 node 'pp.web.org' {
   class { 'apache': }

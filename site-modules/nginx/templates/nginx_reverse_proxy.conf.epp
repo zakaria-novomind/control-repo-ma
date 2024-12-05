@@ -11,3 +11,18 @@ server {
     }
 }
 
+server {
+        if ($host =  <%= $server_name %>){
+          return 301 https://$host$request_uri;
+        }
+        listen       80 default_server;
+        listen       [::]:80 default_server;
+        listen 443 ssl default_server;
+        listen [::]:443 ssl default_server;
+        ssl_certificate '/etc/letsencrypt/live/ <%= $server_name %>/fullchain.pem';
+        ssl_certificate_key "/etc/letsencrypt/live/ <%= $server_name %>/privkey.pem";
+        server_name  _;
+    return 404; # managed by Certbot
+
+
+}
