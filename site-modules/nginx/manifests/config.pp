@@ -14,12 +14,18 @@ class nginx::config {
     }),
     notify  => Service['nginx'],
   }
+  file { '/etc/nginx/sites-available/default':
+    ensure  => file,
+    content => epp('nginx/default.epp'),
+    notify  => Service['nginx'],
+  }
 
   file { "/etc/nginx/sites-enabled/${nginx::server_name}":
     ensure => link,
     target => "/etc/nginx/sites-available/${nginx::server_name}",
     notify => Service['nginx'],
   }
+
   # file { '/etc/letsencrypt/fullchain.pem':
   #   ensure => file,
   # source   => 'puppet:///modules/nginx/fullchain.pem', }
