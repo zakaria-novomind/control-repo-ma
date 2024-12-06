@@ -38,16 +38,16 @@ node /agent/ {
   class { 'letsencrypt':
     email => 'zermani@th-brandenburg.de',
   }
-  # letsencrypt::certonly { 'nginx.tf.aws.nmop.de':
+  letsencrypt::certonly { 'nginx.tf.aws.nmop.de':
 
-  #   manage_cron          => true,
-  #   cron_hour            => [0,12],
-  #   cron_minute          => '30',
-  #   cron_before_command  => '/bin/systemctl stop nginx.service',
-  #   cron_success_command => '/bin/systemctl reload nginx.service',
-  #   cron_output          => 'suppress',
-  # }
-  letsencrypt::certonly { 'nginx.tf.aws.nmop.de': }
+    manage_cron          => true,
+    cron_hour            => [0,12],
+    cron_minute          => '30',
+    cron_before_command  => '/bin/systemctl stop nginx.service',
+    cron_success_command => '/bin/systemctl start nginx.service',
+    cron_output          => 'suppress',
+  }
+# letsencrypt::certonly { 'nginx.tf.aws.nmop.de': }
 }
 node 'pp.web.org' {
   class { 'apache': }
