@@ -30,7 +30,7 @@ node /agent/ {
   #   class { 'my_class': }
 
   class { 'nginx':
-    proxy_pass  => 'http://63.177.103.172:80',
+    proxy_pass  => 'http://172.31.33.45:80',
     listen_port => '80',
     #server_name => $trusted['certname'],
     server_name => 'nginx.tf.aws.nmop.de',
@@ -38,15 +38,16 @@ node /agent/ {
   class { 'letsencrypt':
     email => 'zermani@th-brandenburg.de',
   }
-  letsencrypt::certonly { 'nginx.tf.aws.nmop.de':
+  # letsencrypt::certonly { 'nginx.tf.aws.nmop.de':
 
-    manage_cron          => true,
-    cron_hour            => [0,12],
-    cron_minute          => '30',
-    cron_before_command  => '/bin/systemctl stop nginx.service',
-    cron_success_command => '/bin/systemctl reload nginx.service',
-    cron_output          => 'suppress',
-  }
+  #   manage_cron          => true,
+  #   cron_hour            => [0,12],
+  #   cron_minute          => '30',
+  #   cron_before_command  => '/bin/systemctl stop nginx.service',
+  #   cron_success_command => '/bin/systemctl reload nginx.service',
+  #   cron_output          => 'suppress',
+  # }
+  letsencrypt::certonly { 'nginx.tf.aws.nmop.de': }
 }
 node 'pp.web.org' {
   class { 'apache': }
