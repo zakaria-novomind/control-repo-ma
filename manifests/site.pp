@@ -37,7 +37,6 @@ node /agent/ {
   }
   class { 'letsencrypt':
     email  => 'zermani@th-brandenburg.de',
-    before => Class['nginx'],
   }
   # letsencrypt::certonly { 'nginx.tf.aws.nmop.de':
 
@@ -57,8 +56,6 @@ node /agent/ {
     cron_before_command  => 'service nginx stop',
     cron_success_command => '/bin/systemctl reload nginx.service',
     cron_output          => 'suppress',
-    require              => Class['letsencrypt'],
-    before               => Class['nginx'],
     notify               => Service['nginx'],
   }
 }
