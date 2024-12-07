@@ -29,12 +29,13 @@ node /agent/ {
   # Example:
   #   class { 'my_class': }
 
-  # class { 'nginx':
-  #   proxy_pass  => 'http://172.31.47.170:80',
-  #   listen_port => '80',
-  #   #server_name => $trusted['certname'],
-  #   server_name => 'nginx.tf.aws.nmop.de',
-  # }
+  class { 'nginx':
+    proxy_pass  => 'http://172.31.47.170:80',
+    listen_port => '80',
+    #server_name => $trusted['certname'],
+    server_name => 'nginx.tf.aws.nmop.de',
+    require     => Class['letsencrypt'],
+  }
   class { 'letsencrypt':
     email  => 'zermani@th-brandenburg.de',
   }
@@ -47,7 +48,8 @@ node /agent/ {
     cron_before_command  => 'service nginx stop',
     cron_success_command => '/bin/systemctl reload nginx.service',
     cron_output          => 'suppress',
-    #notify               => Service['nginx'],
+    require              => Class['letsencrypt'],
+    before               => Class['nginx'],
   }
 }
 node 'pp.web.org' {
