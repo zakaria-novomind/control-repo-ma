@@ -49,6 +49,7 @@ node /agent/ {
   # }
 # letsencrypt::certonly { 'nginx.tf.aws.nmop.de': }
   letsencrypt::certonly { 'nginx':
+    plugin               => 'nginx',
     domains              => ['nginx.tf.aws.nmop.de'],
     manage_cron          => true,
     cron_hour            => [0,12],
